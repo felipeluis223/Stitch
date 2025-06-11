@@ -2,72 +2,122 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Carousels com Verificação de Data</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Carousels Românticos Dark</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
+    body {
+      font-family: 'Dancing Script', cursive;
+      background: #121214; /* fundo escuro */
+      color: #e0c9d0; /* rosa pálido para texto */
+    }
+
+    .romantic-card {
+      background: #1f1b24; /* card escuro com tom vinho bem suave */
+      box-shadow: 0 8px 24px rgba(150, 40, 70, 0.7);
+      border-radius: 2rem;
+      padding: 2rem;
+      max-width: 900px;
+      margin: 2rem auto;
+    }
+
+    input[type="date"] {
+      background: #2b2731;
+      border-color: #7b4969;
+      color: #e0c9d0;
+    }
+    input[type="date"]:focus {
+      outline: none;
+      box-shadow: 0 0 8px #7b4969;
+      border-color: #b76e88;
+    }
+
+    button {
+      background: #7b4969;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background: #b76e88;
+    }
+
+    h1, h2 {
+      color: #d8a7b1;
+      text-shadow: 0 0 4px #7b4969;
+    }
+
+    p {
+      font-style: italic;
+      color: #c3a0a9;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+      color: #d19ca3;
+      filter: drop-shadow(0 0 3px #d19ca3);
+    }
+
+    .swiper-pagination-bullet {
+      background: #b76e88;
+      opacity: 0.6;
+    }
+    .swiper-pagination-bullet-active {
+      opacity: 1;
+      background: #d19ca3;
+    }
+
+    .swiper-slide img {
+      border-radius: 1rem;
+      max-height: 360px;
+      object-fit: cover;
+    }
+
+    #message {
+      color: #e07b91;
+      font-weight: 600;
+      margin-top: 0.5rem;
+    }
+  </style>
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+<body>
 
-  <div class="w-full max-w-md bg-white p-6 rounded-xl shadow-xl space-y-4">
+  <div class="romantic-card">
+    <h1 class="text-4xl font-bold mb-1 text-center">Nosso Amor em Fotos</h1>
+    <p class="text-center mb-6">Selecione o dia especial para reviver momentos únicos</p>
 
-    <!-- Card da Data -->
-    <div id="dateCard">
-      <h1 class="text-xl font-bold text-center">Selecione a data correta:</h1>
+    <div class="flex flex-col items-center max-w-xs mx-auto space-y-4">
       <input
         type="date"
         id="dateInput"
-        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        class="w-full rounded-lg px-4 py-3 focus:ring-2 focus:ring-pink-400"
       />
       <button
         id="checkDateBtn"
-        class="w-full bg-blue-500 text-white py-2 mt-4 rounded-lg hover:bg-blue-600 transition"
+        class="w-full text-white py-3 rounded-full font-semibold"
       >
         Verificar Data
       </button>
+      <p id="message"></p>
     </div>
 
-    <!-- Carousel 1 -->
-    <div id="carouselContainer1" class="hidden">
-      <h2 class="text-lg font-semibold text-center mt-4">Vitoria & Felipe</h2>
-      <div class="swiper mySwiper1 mt-4">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide"><img src="./img/img1.jpg" class="rounded-lg w-full"></div>
-          <div class="swiper-slide"><img src="./img/img2.jpg" class="rounded-lg w-full"></div>
-          <div class="swiper-slide"><img src="./img/img3.jpg" class="rounded-lg w-full"></div>
-          <div class="swiper-slide"><img src="./img/img4.jpg" class="rounded-lg w-full"></div>
-          <div class="swiper-slide"><img src="./img/img5.jpg" class="rounded-lg w-full"></div>
-          <div class="swiper-slide"><img src="./img/img6.jpg" class="rounded-lg w-full"></div>
-          <div class="swiper-slide"><img src="./img/img7.jpg" class="rounded-lg w-full"></div>
-          <div class="swiper-slide"><img src="./img/img8.jpg" class="rounded-lg w-full"></div>
-          <div class="swiper-slide"><img src="./img/img9.jpg" class="rounded-lg w-full"></div>
-          <div class="swiper-slide"><img src="./img/img10.jpg" class="rounded-lg w-full"></div>
-          <div class="swiper-slide"><img src="./img/img11.jpg" class="rounded-lg w-full"></div>
-          <div class="swiper-slide"><img src="./img/img12.jpg" class="rounded-lg w-full"></div>
-          <div class="swiper-slide"><img src="./img/img13.jpg" class="rounded-lg w-full"></div>
-          <div class="swiper-slide"><img src="./img/img14.jpg" class="rounded-lg w-full"></div>
-          <div class="swiper-slide"><img src="./img/img15.jpg" class="rounded-lg w-full"></div>
-          <div class="swiper-slide"><img src="./img/img16.jpg" class="rounded-lg w-full"></div>
-        </div>
+    <div id="carouselContainer1" class="hidden mt-8">
+      <h2 class="text-3xl font-semibold mb-4 text-center">Vitoria & Felipe</h2>
+      <div class="swiper mySwiper1 rounded-xl overflow-hidden shadow-lg">
+        <div class="swiper-wrapper" id="wrapper1"></div>
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
         <div class="swiper-pagination"></div>
       </div>
     </div>
 
-    <!-- Carousel 2 -->
-    <div id="carouselContainer2" class="hidden">
-      <h2 class="text-lg font-semibold text-center mt-4">Carousel VIH1 a VIH7</h2>
-      <div class="swiper mySwiper2 mt-4">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide"><img src="./img/vih1.jpg" class="rounded-lg w-full"></div>
-          <div class="swiper-slide"><img src="./img/vih2.jpg" class="rounded-lg w-full"></div>
-          <div class="swiper-slide"><img src="./img/vih3.jpg" class="rounded-lg w-full"></div>
-          <div class="swiper-slide"><img src="./img/vih4.jpg" class="rounded-lg w-full"></div>
-          <div class="swiper-slide"><img src="./img/vih5.jpg" class="rounded-lg w-full"></div>
-          <div class="swiper-slide"><img src="./img/vih6.jpg" class="rounded-lg w-full"></div>
-          <div class="swiper-slide"><img src="./img/vih7.jpg" class="rounded-lg w-full"></div>
-        </div>
+    <p class="mt-12 font-semibold text-xl text-center text-pink-400 italic">Confira também nossa seleção especial abaixo:</p>
+
+    <div id="carouselContainer2" class="hidden mt-6">
+      <h2 class="text-3xl font-semibold mb-4 text-center">Carousel VIH1 a VIH7</h2>
+      <div class="swiper mySwiper2 rounded-xl overflow-hidden shadow-lg">
+        <div class="swiper-wrapper" id="wrapper2"></div>
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
         <div class="swiper-pagination"></div>
@@ -77,39 +127,53 @@
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script>
+    const wrapper1 = document.getElementById('wrapper1');
+    const wrapper2 = document.getElementById('wrapper2');
+    const message = document.getElementById('message');
+
+    // Inserir imagens no primeiro carousel
+    for (let i = 1; i <= 16; i++) {
+      const slide = document.createElement('div');
+      slide.className = 'swiper-slide';
+      slide.innerHTML = `<img src="./img/img${i}.jpg" alt="img${i}">`;
+      wrapper1.appendChild(slide);
+    }
+
+    // Inserir imagens no segundo carousel
+    for (let i = 1; i <= 7; i++) {
+      const slide = document.createElement('div');
+      slide.className = 'swiper-slide';
+      slide.innerHTML = `<img src="./img/vih${i}.jpg" alt="vih${i}">`;
+      wrapper2.appendChild(slide);
+    }
+
+    let swiper1, swiper2;
+
     document.getElementById('checkDateBtn').addEventListener('click', function() {
       const dateValue = document.getElementById('dateInput').value;
       const expectedDate = '2023-02-19';
 
       if (dateValue === expectedDate) {
-        // Esconde o card da data:
-        document.getElementById('dateCard').classList.add('hidden');
-        
-        // Mostra os carousels:
+        message.textContent = '';
         document.getElementById('carouselContainer1').classList.remove('hidden');
         document.getElementById('carouselContainer2').classList.remove('hidden');
 
-        // Inicializa carousels apenas uma vez:
-        if (!window.swiper1Initialized) {
-          new Swiper(".mySwiper1", {
+        if (!swiper1) {
+          swiper1 = new Swiper(".mySwiper1", {
             loop: true,
             pagination: { el: ".mySwiper1 .swiper-pagination", clickable: true },
             navigation: { nextEl: ".mySwiper1 .swiper-button-next", prevEl: ".mySwiper1 .swiper-button-prev" },
           });
-          window.swiper1Initialized = true;
         }
-
-        if (!window.swiper2Initialized) {
-          new Swiper(".mySwiper2", {
+        if (!swiper2) {
+          swiper2 = new Swiper(".mySwiper2", {
             loop: true,
             pagination: { el: ".mySwiper2 .swiper-pagination", clickable: true },
             navigation: { nextEl: ".mySwiper2 .swiper-button-next", prevEl: ".mySwiper2 .swiper-button-prev" },
           });
-          window.swiper2Initialized = true;
         }
-
       } else {
-        alert("Data incorreta! Por favor, selecione 19/02/2023.");
+        message.textContent = 'Data incorreta! Por favor, selecione 19/02/2023.';
         document.getElementById('carouselContainer1').classList.add('hidden');
         document.getElementById('carouselContainer2').classList.add('hidden');
       }
