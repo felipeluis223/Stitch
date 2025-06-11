@@ -3,121 +3,83 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Carousels Românticos Dark</title>
+  <title>F&V</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
-
     body {
-      font-family: 'Dancing Script', cursive;
-      background: #121214; /* fundo escuro */
-      color: #e0c9d0; /* rosa pálido para texto */
+      background: #0f0f0f;
+      color: #e5e5e5;
+      font-family: 'Inter', sans-serif;
     }
-
-    .romantic-card {
-      background: #1f1b24; /* card escuro com tom vinho bem suave */
-      box-shadow: 0 8px 24px rgba(150, 40, 70, 0.7);
-      border-radius: 2rem;
-      padding: 2rem;
-      max-width: 900px;
-      margin: 2rem auto;
-    }
-
-    input[type="date"] {
-      background: #2b2731;
-      border-color: #7b4969;
-      color: #e0c9d0;
-    }
-    input[type="date"]:focus {
-      outline: none;
-      box-shadow: 0 0 8px #7b4969;
-      border-color: #b76e88;
-    }
-
-    button {
-      background: #7b4969;
-      transition: background-color 0.3s ease;
-    }
-    button:hover {
-      background: #b76e88;
-    }
-
-    h1, h2 {
-      color: #d8a7b1;
-      text-shadow: 0 0 4px #7b4969;
-    }
-
-    p {
-      font-style: italic;
-      color: #c3a0a9;
-    }
-
     .swiper-button-next,
     .swiper-button-prev {
-      color: #d19ca3;
-      filter: drop-shadow(0 0 3px #d19ca3);
+      color: #999;
+      transition: color 0.3s ease;
     }
-
+    .swiper-button-next:hover,
+    .swiper-button-prev:hover {
+      color: #fff;
+    }
     .swiper-pagination-bullet {
-      background: #b76e88;
-      opacity: 0.6;
+      background: #555;
+      opacity: 0.7;
     }
     .swiper-pagination-bullet-active {
+      background: #fff;
       opacity: 1;
-      background: #d19ca3;
     }
-
     .swiper-slide img {
-      border-radius: 1rem;
-      max-height: 360px;
-      object-fit: cover;
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      display: block;
+      margin: 0 auto;
     }
-
-    #message {
-      color: #e07b91;
-      font-weight: 600;
-      margin-top: 0.5rem;
+    .swiper {
+      width: 100%;
+    }
+    .fade-in {
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .fade-in.show {
+      opacity: 1;
     }
   </style>
 </head>
-<body>
+<body class="flex items-center justify-center min-h-screen">
 
-  <div class="romantic-card">
-    <h1 class="text-4xl font-bold mb-1 text-center">Nosso Amor em Fotos</h1>
-    <p class="text-center mb-6">Selecione o dia especial para reviver momentos únicos</p>
+  <div class="w-full max-w-3xl p-6 bg-neutral-900 rounded-xl shadow-lg">
+    <h1 class="text-2xl font-semibold mb-4 text-green-400 text-center">F&V</h1>
 
-    <div class="flex flex-col items-center max-w-xs mx-auto space-y-4">
-      <input
-        type="date"
-        id="dateInput"
-        class="w-full rounded-lg px-4 py-3 focus:ring-2 focus:ring-pink-400"
+    <span id="subtitle" class="block text-[#c3c3c3] mb-4 text-center">
+      Para acessar coloque uma data especial:
+    </span>
+
+    <div id="inputContainer">
+      <input 
+        type="date" 
+        id="dateInput" 
+        class="w-full mb-4 p-3 rounded bg-neutral-800 border border-neutral-700 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
       />
-      <button
-        id="checkDateBtn"
-        class="w-full text-white py-3 rounded-full font-semibold"
+
+      <button 
+        id="checkDateBtn" 
+        class="w-full mb-6 py-3 bg-blue-600 hover:bg-blue-700 transition-colors rounded text-white font-medium"
       >
         Verificar Data
       </button>
-      <p id="message"></p>
     </div>
 
-    <div id="carouselContainer1" class="hidden mt-8">
-      <h2 class="text-3xl font-semibold mb-4 text-center">Vitoria & Felipe</h2>
-      <div class="swiper mySwiper1 rounded-xl overflow-hidden shadow-lg">
-        <div class="swiper-wrapper" id="wrapper1"></div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-pagination"></div>
-      </div>
-    </div>
+    <p id="message" class="text-center text-red-400 mb-6"></p>
 
-    <p class="mt-12 font-semibold text-xl text-center text-pink-400 italic">Confira também nossa seleção especial abaixo:</p>
+    <!-- Texto novo de boas-vindas -->
+    <p id="welcomeText" class="text-center font-bold mb-6 fade-in">💖 Feliz Dia dos Namorados! 💖 <br/> TE AMO minha princesa!</p>
 
-    <div id="carouselContainer2" class="hidden mt-6">
-      <h2 class="text-3xl font-semibold mb-4 text-center">Carousel VIH1 a VIH7</h2>
-      <div class="swiper mySwiper2 rounded-xl overflow-hidden shadow-lg">
-        <div class="swiper-wrapper" id="wrapper2"></div>
+    <div id="carouselContainer" class="hidden">
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper" id="wrapper"></div>
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
         <div class="swiper-pagination"></div>
@@ -127,55 +89,54 @@
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script>
-    const wrapper1 = document.getElementById('wrapper1');
-    const wrapper2 = document.getElementById('wrapper2');
+    const wrapper = document.getElementById('wrapper');
     const message = document.getElementById('message');
+    const inputContainer = document.getElementById('inputContainer');
+    const subtitle = document.getElementById('subtitle');
+    const welcomeText = document.getElementById('welcomeText');
+    const carouselContainer = document.getElementById('carouselContainer');
 
-    // Inserir imagens no primeiro carousel
-    for (let i = 1; i <= 16; i++) {
+    // Inserir imagens dinamicamente
+    for (let i = 1; i <= 10; i++) {
       const slide = document.createElement('div');
       slide.className = 'swiper-slide';
-      slide.innerHTML = `<img src="./img/img${i}.jpg" alt="img${i}">`;
-      wrapper1.appendChild(slide);
+      slide.innerHTML = `<img src="./img/img${i}.jpg" alt="Imagem ${i}">`;
+      wrapper.appendChild(slide);
     }
 
-    // Inserir imagens no segundo carousel
-    for (let i = 1; i <= 7; i++) {
-      const slide = document.createElement('div');
-      slide.className = 'swiper-slide';
-      slide.innerHTML = `<img src="./img/vih${i}.jpg" alt="vih${i}">`;
-      wrapper2.appendChild(slide);
-    }
+    let swiper;
 
-    let swiper1, swiper2;
-
-    document.getElementById('checkDateBtn').addEventListener('click', function() {
+    document.getElementById('checkDateBtn').addEventListener('click', () => {
       const dateValue = document.getElementById('dateInput').value;
       const expectedDate = '2023-02-19';
 
       if (dateValue === expectedDate) {
         message.textContent = '';
-        document.getElementById('carouselContainer1').classList.remove('hidden');
-        document.getElementById('carouselContainer2').classList.remove('hidden');
 
-        if (!swiper1) {
-          swiper1 = new Swiper(".mySwiper1", {
-            loop: true,
-            pagination: { el: ".mySwiper1 .swiper-pagination", clickable: true },
-            navigation: { nextEl: ".mySwiper1 .swiper-button-next", prevEl: ".mySwiper1 .swiper-button-prev" },
-          });
-        }
-        if (!swiper2) {
-          swiper2 = new Swiper(".mySwiper2", {
-            loop: true,
-            pagination: { el: ".mySwiper2 .swiper-pagination", clickable: true },
-            navigation: { nextEl: ".mySwiper2 .swiper-button-next", prevEl: ".mySwiper2 .swiper-button-prev" },
-          });
-        }
+        // Remove o subtítulo e inputContainer do DOM definitivamente
+        subtitle.remove();
+        inputContainer.remove();
+
+        // Mostra o texto de boas-vindas com fade-in
+        welcomeText.classList.add('show');
+
+        // Depois de 500ms, mostra o carrossel
+        setTimeout(() => {
+          carouselContainer.classList.remove('hidden');
+
+          if (!swiper) {
+            swiper = new Swiper(".mySwiper", {
+              loop: true,
+              autoHeight: true,
+              pagination: { el: ".swiper-pagination", clickable: true },
+              navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+            });
+          }
+        }, 500);
+
       } else {
-        message.textContent = 'Data incorreta! Por favor, selecione 19/02/2023.';
-        document.getElementById('carouselContainer1').classList.add('hidden');
-        document.getElementById('carouselContainer2').classList.add('hidden');
+        message.textContent = 'Data incorreta... Dica: data de namoro...';
+        carouselContainer.classList.add('hidden');
       }
     });
   </script>
